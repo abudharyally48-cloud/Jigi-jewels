@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jigi Jewels | Luxury Jewelry — Enugu</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:ital,wght@0,200;0,300;0,400;0,500;1,200;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#0A0806;--bg2:#120E0A;--bg3:#1A1410;--bg4:#221A14;
+  --gold:#C9973A;--gold2:#E8B84B;--gold3:#F5D580;--gold-dim:rgba(201,151,58,0.12);
+  --white:#fff;--cream:#F8F0E3;--gray:#7A6A58;--lgray:#C4B09A;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--cream);font-family:'Raleway',sans-serif;overflow-x:hidden;}
+::-webkit-scrollbar{width:2px;}::-webkit-scrollbar-thumb{background:var(--gold);}
+
+/* CURSOR */
+.cur{position:fixed;width:6px;height:6px;background:var(--gold3);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width 0.15s,height 0.15s;}
+.cur-r{position:fixed;width:28px;height:28px;border:1px solid rgba(201,151,58,0.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all 0.1s ease;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:28px 80px;display:flex;align-items:center;justify-content:space-between;transition:all 0.5s;}
+nav.sc{background:rgba(10,8,6,0.96);backdrop-filter:blur(24px);padding:16px 80px;border-bottom:1px solid rgba(201,151,58,0.08);}
+.logo{text-decoration:none;text-align:center;}
+.lm{font-family:'Cinzel',serif;font-size:1.5rem;font-weight:600;color:var(--cream);letter-spacing:6px;text-transform:uppercase;display:block;}
+.ls{font-size:0.44rem;letter-spacing:8px;text-transform:uppercase;color:var(--gold);margin-top:2px;display:block;}
+.nlinks{display:flex;gap:36px;list-style:none;}
+.nlinks a{color:var(--gray);text-decoration:none;font-size:0.6rem;letter-spacing:5px;text-transform:uppercase;font-weight:300;transition:color 0.3s;}
+.nlinks a:hover{color:var(--gold);}
+.ncta{border:1px solid rgba(201,151,58,0.4);color:var(--gold);padding:9px 26px;font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;text-decoration:none;transition:all 0.3s;font-weight:500;}
+.ncta:hover{background:var(--gold);color:var(--bg);}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;}
+.ham span{width:22px;height:1px;background:var(--cream);display:block;}
+.mm{display:none;position:fixed;inset:0;z-index:999;background:rgba(10,8,6,0.99);flex-direction:column;align-items:center;justify-content:center;gap:40px;}
+.mm.open{display:flex;}
+.mm a{font-family:'Cinzel',serif;font-size:2rem;font-weight:400;color:var(--cream);text-decoration:none;letter-spacing:4px;}
+.mm a:hover{color:var(--gold);}
+.mclose{position:absolute;top:24px;right:32px;background:none;border:none;color:var(--cream);font-size:1.8rem;cursor:pointer;}
+
+/* HERO */
+#hero{min-height:100vh;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1600&q=85') center/cover;filter:brightness(0.12) saturate(0.8);}
+.hero-overlay{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(201,151,58,0.04) 0%,transparent 70%);}
+/* Decorative ring */
+.hero-ring{position:absolute;width:600px;height:600px;border:1px solid rgba(201,151,58,0.06);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);}
+.hero-ring2{position:absolute;width:800px;height:800px;border:1px solid rgba(201,151,58,0.03);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);}
+.hero-inner{position:relative;z-index:1;max-width:820px;padding:0 24px;}
+.hero-gem{font-size:1.4rem;letter-spacing:6px;color:var(--gold);margin-bottom:28px;display:flex;align-items:center;justify-content:center;gap:16px;opacity:0;animation:fup 0.8s ease 0.2s forwards;}
+.hero-gem::before,.hero-gem::after{content:'';width:48px;height:1px;background:linear-gradient(to right,transparent,var(--gold));}
+.hero-gem::after{transform:scaleX(-1);}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(3.5rem,9vw,8.5rem);font-weight:700;line-height:0.9;letter-spacing:6px;text-transform:uppercase;color:var(--cream);margin-bottom:12px;opacity:0;animation:fup 0.9s ease 0.4s forwards;}
+.hero-title-em{font-family:'Cinzel',serif;font-size:clamp(1.8rem,4vw,3.5rem);font-weight:400;letter-spacing:14px;text-transform:uppercase;color:var(--gold);margin-bottom:36px;opacity:0;animation:fup 0.9s ease 0.6s forwards;}
+.hero-sub{color:rgba(248,240,227,0.35);font-size:0.82rem;font-weight:200;line-height:2;letter-spacing:3px;text-transform:uppercase;max-width:480px;margin:0 auto 48px;opacity:0;animation:fup 0.9s ease 0.8s forwards;}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fup 0.9s ease 1s forwards;}
+.btn-gold{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--bg);padding:14px 40px;font-size:0.68rem;letter-spacing:4px;text-transform:uppercase;font-weight:600;text-decoration:none;transition:all 0.3s;}
+.btn-gold:hover{background:var(--gold2);}
+.btn-ol{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(201,151,58,0.3);color:rgba(248,240,227,0.6);padding:14px 40px;font-size:0.68rem;letter-spacing:4px;text-transform:uppercase;text-decoration:none;transition:all 0.3s;}
+.btn-ol:hover{border-color:var(--gold);color:var(--gold);}
+@keyframes fup{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+/* MARQUEE */
+.mwrap{background:var(--gold);padding:12px 0;overflow:hidden;}
+.minner{display:inline-flex;animation:marq 28s linear infinite;}
+.mi{font-family:'Cinzel',serif;font-size:0.75rem;letter-spacing:6px;text-transform:uppercase;color:var(--bg);padding:0 28px;font-weight:600;}
+.md{color:rgba(10,8,6,0.35);padding:0 6px;font-size:0.6rem;}
+@keyframes marq{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:all 0.9s cubic-bezier(0.16,1,0.3,1);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.rd1{transition-delay:0.1s;}.rd2{transition-delay:0.2s;}.rd3{transition-delay:0.3s;}.rd4{transition-delay:0.4s;}
+section{padding:110px 80px;}
+.eyebrow{font-size:0.52rem;letter-spacing:7px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:14px;font-weight:300;}
+.eyebrow::before{content:'◆';font-size:0.4rem;}
+.stitle{font-family:'Cinzel',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:600;line-height:1.15;margin-bottom:14px;letter-spacing:2px;text-transform:uppercase;}
+.stitle em{font-style:italic;color:var(--gold);font-family:'Raleway',sans-serif;font-weight:200;text-transform:none;letter-spacing:0;}
+
+/* COLLECTIONS */
+#collections{background:var(--bg2);}
+.coll-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:64px;flex-wrap:wrap;gap:20px;}
+.coll-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:3px;max-width:1200px;margin:0 auto;}
+.coll-card{position:relative;overflow:hidden;cursor:pointer;}
+.coll-card.tall{grid-row:span 2;}
+.coll-img{width:100%;height:380px;object-fit:cover;object-position:center;display:block;filter:saturate(0.7) brightness(0.65);transition:all 0.8s;}
+.coll-card.tall .coll-img{height:763px;}
+.coll-card:hover .coll-img{filter:saturate(0.9) brightness(0.8);transform:scale(1.04);}
+.coll-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,8,6,0.9) 0%,transparent 50%);transition:opacity 0.3s;}
+.coll-body{position:absolute;bottom:0;left:0;right:0;padding:28px 28px;transform:translateY(8px);transition:transform 0.3s;}
+.coll-card:hover .coll-body{transform:translateY(0);}
+.coll-cat{font-size:0.52rem;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.coll-name{font-family:'Cinzel',serif;font-size:1.2rem;font-weight:600;color:var(--cream);letter-spacing:2px;margin-bottom:10px;}
+.coll-wa{display:inline-flex;align-items:center;gap:8px;color:var(--gold);font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;text-decoration:none;}
+
+/* FEATURED */
+#featured{background:var(--bg);}
+.feat-header{text-align:center;margin-bottom:70px;}
+.feat-header .eyebrow{justify-content:center;}
+.feat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:3px;max-width:1300px;margin:0 auto;}
+.feat-item{position:relative;overflow:hidden;cursor:pointer;}
+.feat-img{width:100%;height:340px;object-fit:cover;object-position:center;display:block;filter:saturate(0.6) brightness(0.7);transition:all 0.6s;}
+.feat-img:hover{filter:saturate(1) brightness(0.9);transform:scale(1.06);}
+.feat-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,8,6,0.85) 0%,transparent 55%);}
+.feat-label{position:absolute;bottom:16px;left:16px;right:16px;}
+.feat-type{font-size:0.5rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:3px;}
+.feat-name{font-family:'Cinzel',serif;font-size:0.85rem;color:var(--cream);letter-spacing:1px;}
+
+/* ABOUT */
+#about{background:var(--bg2);}
+.about-inner{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center;max-width:1200px;margin:0 auto;}
+.about-mosaic{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
+.am-img{width:100%;height:240px;object-fit:cover;filter:saturate(0.7) brightness(0.7);display:block;transition:all 0.5s;}
+.am-img:hover{filter:saturate(0.9) brightness(0.85);}
+.am-img.tall{height:488px;grid-row:span 2;}
+.about-right p{color:var(--gray);font-size:0.84rem;line-height:2;margin-bottom:16px;font-weight:300;}
+.about-divider{width:48px;height:1px;background:var(--gold);margin:28px 0;}
+.about-addr{padding:18px 20px;background:var(--bg3);border-left:2px solid var(--gold);}
+.aal{font-size:0.5rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.aav{color:var(--lgray);font-size:0.8rem;line-height:1.7;}
+
+/* TESTIMONIALS */
+#testi{background:var(--bg);}
+.testi-header{text-align:center;margin-bottom:60px;}
+.testi-header .eyebrow{justify-content:center;}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:1100px;margin:0 auto;}
+.tc{background:var(--bg2);padding:36px 30px;border-bottom:1px solid transparent;transition:all 0.3s;}
+.tc:hover{border-bottom-color:var(--gold);}
+.tc-stars{color:var(--gold);font-size:0.65rem;letter-spacing:3px;margin-bottom:16px;}
+.tc-text{font-family:'Raleway',sans-serif;font-size:0.9rem;font-style:italic;font-weight:200;line-height:1.9;color:var(--lgray);margin-bottom:20px;}
+.tc-name{font-family:'Cinzel',serif;font-size:0.75rem;color:var(--cream);letter-spacing:2px;}
+.tc-det{font-size:0.62rem;color:var(--gray);margin-top:3px;letter-spacing:1px;}
+
+/* ORDER */
+#order{background:var(--bg2);}
+.order-inner{max-width:860px;margin:0 auto;text-align:center;}
+.order-inner p{color:var(--gray);font-size:0.84rem;line-height:2;margin-bottom:48px;font-weight:300;}
+.order-opts{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:36px;}
+.oo{background:var(--bg3);padding:32px 20px;border:1px solid transparent;transition:all 0.35s;text-decoration:none;display:block;}
+.oo:hover{border-color:rgba(201,151,58,0.3);background:var(--bg4);transform:translateY(-4px);}
+.oo-gem{font-size:1.2rem;margin-bottom:14px;display:block;color:var(--gold);}
+.oo-icon{color:var(--gold);display:flex;justify-content:center;margin-bottom:14px;}
+.oo-name{font-family:'Cinzel',serif;font-size:1rem;font-weight:600;letter-spacing:2px;margin-bottom:6px;color:var(--cream);}
+.oo-desc{font-size:0.7rem;color:var(--gray);line-height:1.6;font-weight:300;}
+.wa-main{display:inline-flex;align-items:center;gap:14px;background:var(--gold);color:var(--bg);padding:16px 52px;font-size:0.72rem;letter-spacing:4px;text-transform:uppercase;font-weight:700;text-decoration:none;transition:all 0.3s;font-family:'Cinzel',serif;}
+.wa-main:hover{background:var(--gold2);}
+
+/* FOOTER */
+footer{background:#050301;padding:64px 80px;border-top:1px solid rgba(201,151,58,0.06);}
+.fi{max-width:1300px;margin:0 auto;}
+.ft{display:grid;grid-template-columns:1.8fr 1fr 1fr;gap:70px;margin-bottom:50px;}
+.fb-logo{font-family:'Cinzel',serif;font-size:1.4rem;font-weight:600;letter-spacing:5px;color:var(--cream);text-transform:uppercase;margin-bottom:4px;}
+.fb-sub{font-size:0.44rem;letter-spacing:7px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.fb-desc{color:#3a2e22;font-size:0.75rem;line-height:1.8;font-weight:300;}
+.fc h4{font-size:0.5rem;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+.fc ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.fc a{color:#2a2018;text-decoration:none;font-size:0.75rem;transition:color 0.3s;}
+.fc a:hover{color:var(--gold);}
+.fbot{padding-top:24px;border-top:1px solid rgba(201,151,58,0.05);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.fcp{color:#180e06;font-size:0.6rem;letter-spacing:1px;}
+
+/* FLOAT WA */
+.fwa{position:fixed;bottom:36px;left:36px;z-index:998;background:#25D366;color:#fff;width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 8px 30px rgba(37,211,102,0.3);transition:all 0.3s;}
+.fwa:hover{transform:translateY(-3px) scale(1.08);}
+
+/* CHATBOT */
+.cpulse{position:fixed;bottom:36px;right:36px;z-index:999;width:56px;height:56px;border-radius:50%;background:rgba(201,151,58,0.15);animation:cps 2.2s infinite;pointer-events:none;}
+@keyframes cps{0%{transform:scale(1);opacity:0.7;}100%{transform:scale(2);opacity:0;}}
+.cbtn{position:fixed;bottom:36px;right:36px;z-index:1000;background:var(--gold);color:var(--bg);width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 8px 30px rgba(201,151,58,0.3);border:none;font-family:'Cinzel',serif;font-size:0.55rem;font-weight:600;letter-spacing:1px;text-align:center;line-height:1.3;}
+.cbtn:hover{background:var(--gold2);}
+.cnotif{position:absolute;top:-3px;right:-3px;width:18px;height:18px;background:#E63946;border-radius:50%;font-size:0.56rem;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-family:'Raleway',sans-serif;}
+.cwin{position:fixed;bottom:110px;right:36px;z-index:1000;width:320px;max-height:500px;background:var(--bg2);border:1px solid rgba(201,151,58,0.15);border-radius:16px;overflow:hidden;display:none;flex-direction:column;box-shadow:0 24px 70px rgba(0,0,0,0.6);}
+.cwin.open{display:flex;}
+.chead{background:linear-gradient(135deg,#2A1E10,#3A2A18);padding:15px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(201,151,58,0.15);}
+.chi{display:flex;align-items:center;gap:10px;}
+.chava{width:34px;height:34px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:0.65rem;color:var(--bg);font-weight:700;}
+.chname{font-family:'Cinzel',serif;font-size:0.85rem;color:var(--cream);letter-spacing:2px;}
+.chst{font-size:0.56rem;color:var(--gray);margin-top:1px;letter-spacing:1px;}
+.chx{background:none;border:none;color:var(--gray);font-size:1rem;cursor:pointer;}
+.cmsgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:8px;max-height:300px;}
+.cmsgs::-webkit-scrollbar{width:2px;}
+.cmsgs::-webkit-scrollbar-thumb{background:var(--gold);}
+.cm{max-width:86%;padding:9px 13px;border-radius:12px;font-size:0.76rem;line-height:1.65;animation:cmin 0.3s ease;}
+@keyframes cmin{from{opacity:0;transform:translateY(5px);}to{opacity:1;transform:translateY(0);}}
+.cm.bot{background:var(--bg3);color:var(--lgray);border-bottom-left-radius:3px;align-self:flex-start;}
+.cm.user{background:var(--gold);color:var(--bg);border-bottom-right-radius:3px;align-self:flex-end;font-weight:500;}
+.ctyp{display:flex;gap:4px;padding:9px 13px;background:var(--bg3);border-radius:12px;border-bottom-left-radius:3px;align-self:flex-start;}
+.ctyp span{width:5px;height:5px;border-radius:50%;background:var(--gold);animation:cti 1.2s infinite;}
+.ctyp span:nth-child(2){animation-delay:0.2s;}
+.ctyp span:nth-child(3){animation-delay:0.4s;}
+@keyframes cti{0%,60%,100%{transform:translateY(0);opacity:0.4;}30%{transform:translateY(-5px);opacity:1;}}
+.copts{display:flex;flex-wrap:wrap;gap:5px;padding:0 13px 9px;}
+.copt{background:none;border:1px solid rgba(201,151,58,0.2);color:var(--gold);padding:6px 11px;border-radius:20px;font-family:'Raleway',sans-serif;font-size:0.65rem;cursor:pointer;transition:all 0.2s;}
+.copt:hover{background:var(--gold);color:var(--bg);}
+.cinprow{display:flex;gap:7px;border-top:1px solid rgba(201,151,58,0.08);padding:9px 11px;}
+.cinp{flex:1;background:var(--bg3);border:1px solid rgba(201,151,58,0.1);color:var(--cream);padding:8px 12px;border-radius:20px;font-family:'Raleway',sans-serif;font-size:0.76rem;outline:none;}
+.cinp:focus{border-color:var(--gold);}
+.cinp::placeholder{color:var(--gray);}
+.csend{background:var(--gold);color:var(--bg);border:none;width:30px;height:30px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.cwalink{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;padding:8px 16px;border-radius:20px;text-decoration:none;font-size:0.7rem;font-weight:600;margin:4px 13px 9px;letter-spacing:1px;}
+
+/* LIGHTBOX */
+.lb{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.97);align-items:center;justify-content:center;}
+.lb.open{display:flex;}
+.lb img{max-width:90vw;max-height:90vh;object-fit:contain;}
+.lbx{position:absolute;top:20px;right:28px;color:var(--gold);font-size:1.8rem;cursor:pointer;background:none;border:none;font-family:'Cinzel',serif;}
+
+/* ADMIN PANEL */
+.adm-trigger{position:fixed;top:0;left:50%;transform:translateX(-50%);z-index:9999;width:60px;height:4px;background:rgba(201,151,58,0.0);cursor:pointer;transition:background 0.3s;}
+.adm-trigger:hover{background:rgba(201,151,58,0.4);height:6px;}
+/* Login overlay */
+.adm-login{display:none;position:fixed;inset:0;z-index:10000;background:rgba(5,3,1,0.97);align-items:center;justify-content:center;backdrop-filter:blur(12px);}
+.adm-login.open{display:flex;}
+.adm-login-box{background:var(--bg2);border:1px solid rgba(201,151,58,0.2);padding:52px 48px;max-width:380px;width:90%;text-align:center;}
+.adm-login-logo{font-family:'Cinzel',serif;font-size:1.1rem;letter-spacing:6px;color:var(--gold);margin-bottom:6px;text-transform:uppercase;}
+.adm-login-sub{font-size:0.52rem;letter-spacing:4px;color:var(--gray);text-transform:uppercase;margin-bottom:36px;}
+.adm-login-box input{width:100%;background:var(--bg3);border:1px solid rgba(201,151,58,0.12);color:var(--cream);padding:13px 16px;font-family:'Raleway',sans-serif;font-size:0.82rem;outline:none;margin-bottom:12px;letter-spacing:2px;}
+.adm-login-box input:focus{border-color:var(--gold);}
+.adm-login-box input::placeholder{color:var(--gray);letter-spacing:1px;}
+.adm-login-btn{width:100%;background:var(--gold);color:var(--bg);border:none;padding:13px;font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:4px;text-transform:uppercase;cursor:pointer;transition:background 0.3s;margin-top:4px;}
+.adm-login-btn:hover{background:var(--gold2);}
+.adm-login-err{color:#e63946;font-size:0.65rem;margin-top:10px;letter-spacing:1px;min-height:20px;}
+.adm-login-close{display:block;margin-top:20px;color:var(--gray);font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:color 0.3s;}
+.adm-login-close:hover{color:var(--cream);}
+/* Main admin panel */
+.adm-panel{display:none;position:fixed;inset:0;z-index:10001;background:rgba(5,3,1,0.98);flex-direction:column;overflow:hidden;}
+.adm-panel.open{display:flex;}
+.adm-header{background:var(--bg2);border-bottom:1px solid rgba(201,151,58,0.15);padding:18px 36px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.adm-title{font-family:'Cinzel',serif;font-size:0.85rem;letter-spacing:5px;color:var(--gold);text-transform:uppercase;}
+.adm-header-right{display:flex;align-items:center;gap:16px;}
+.adm-save-all{background:var(--gold);color:var(--bg);border:none;padding:9px 24px;font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:background 0.2s;}
+.adm-save-all:hover{background:var(--gold2);}
+.adm-reset-all{background:none;border:1px solid rgba(201,151,58,0.25);color:var(--gray);padding:9px 18px;font-family:'Raleway',sans-serif;font-size:0.6rem;letter-spacing:2px;cursor:pointer;transition:all 0.2s;}
+.adm-reset-all:hover{border-color:var(--gold);color:var(--gold);}
+.adm-close{background:none;border:none;color:var(--gray);font-size:1.4rem;cursor:pointer;padding:4px 8px;transition:color 0.2s;}
+.adm-close:hover{color:var(--cream);}
+.adm-body{flex:1;overflow-y:auto;padding:36px;}
+.adm-body::-webkit-scrollbar{width:2px;}.adm-body::-webkit-scrollbar-thumb{background:var(--gold);}
+.adm-section-title{font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:6px;color:var(--gold);text-transform:uppercase;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid rgba(201,151,58,0.1);display:flex;align-items:center;gap:10px;}
+.adm-section-title::before{content:'◆';font-size:0.4rem;}
+.adm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:48px;}
+.adm-card{background:var(--bg2);border:1px solid rgba(201,151,58,0.08);padding:16px;transition:border-color 0.3s;}
+.adm-card:hover{border-color:rgba(201,151,58,0.25);}
+.adm-card-preview{width:100%;height:150px;object-fit:cover;display:block;margin-bottom:12px;filter:saturate(0.8) brightness(0.7);cursor:pointer;}
+.adm-card-label{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.adm-card-name{font-family:'Cinzel',serif;font-size:0.8rem;color:var(--cream);margin-bottom:12px;letter-spacing:1px;}
+.adm-url-input{width:100%;background:var(--bg3);border:1px solid rgba(201,151,58,0.1);color:var(--cream);padding:8px 10px;font-family:'Raleway',sans-serif;font-size:0.68rem;outline:none;margin-bottom:8px;letter-spacing:0.5px;}
+.adm-url-input:focus{border-color:rgba(201,151,58,0.5);}
+.adm-url-input::placeholder{color:var(--gray);}
+.adm-card-btns{display:flex;gap:6px;}
+.adm-apply-btn{flex:1;background:var(--gold);color:var(--bg);border:none;padding:8px;font-family:'Raleway',sans-serif;font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:background 0.2s;}
+.adm-apply-btn:hover{background:var(--gold2);}
+.adm-reset-btn{background:none;border:1px solid rgba(201,151,58,0.15);color:var(--gray);padding:8px 12px;font-family:'Raleway',sans-serif;font-size:0.6rem;cursor:pointer;transition:all 0.2s;}
+.adm-reset-btn:hover{border-color:rgba(201,151,58,0.4);color:var(--gold);}
+.adm-status{font-size:0.58rem;color:#25D366;letter-spacing:1px;margin-top:6px;min-height:16px;opacity:0;transition:opacity 0.3s;}
+.adm-status.show{opacity:1;}
+.adm-toast{position:fixed;bottom:40px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--bg);padding:12px 28px;font-family:'Cinzel',serif;font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;z-index:10002;opacity:0;transition:opacity 0.4s;pointer-events:none;}
+.adm-toast.show{opacity:1;}
+.adm-hero-section{margin-bottom:48px;}
+.adm-hero-preview{width:100%;height:200px;object-fit:cover;display:block;margin-bottom:12px;filter:brightness(0.4) saturate(0.8);}
+.adm-hero-row{display:flex;gap:10px;align-items:flex-end;}
+.adm-hero-row .adm-url-input{margin-bottom:0;}
+/* Access button hint */
+.adm-hint{position:fixed;bottom:100px;right:36px;z-index:997;background:var(--bg2);border:1px solid rgba(201,151,58,0.15);padding:8px 14px;font-size:0.55rem;letter-spacing:2px;color:var(--gray);text-transform:uppercase;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+@media(max-width:1024px){
+  nav{padding:16px 24px;}nav.sc{padding:12px 24px;}
+  .nlinks,.ncta{display:none;}
+  .ham{display:flex;}
+  section{padding:80px 24px;}
+  .coll-grid{grid-template-columns:1fr;}
+  .coll-card.tall .coll-img,.coll-card .coll-img{height:320px;}
+  .coll-card.tall{grid-row:span 1;}
+  .feat-grid{grid-template-columns:1fr 1fr;}
+  .about-inner{grid-template-columns:1fr;}
+  .about-mosaic{grid-template-columns:1fr 1fr;}
+  .am-img.tall{height:240px;grid-row:span 1;}
+  .testi-grid,.order-opts{grid-template-columns:1fr;}
+  footer{padding:48px 24px;}
+  .ft{grid-template-columns:1fr;gap:32px;}
+  .fbot{flex-direction:column;text-align:center;}
+  body{cursor:auto;}
+  .cur,.cur-r{display:none;}
+}
+</style>
+</head>
+<body>
+<div class="cur" id="cur"></div>
+<div class="cur-r" id="curr"></div>
+
+<nav id="nav">
+  <div></div>
+  <a href="#hero" class="logo"><span class="lm">Jigi Jewels</span><span class="ls">Luxury Jewelry · Enugu</span></a>
+  <div style="display:flex;align-items:center;gap:32px;">
+    <ul class="nlinks">
+      <li><a href="#collections">Collections</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#order">Order</a></li>
+    </ul>
+    <a href="https://wa.me/2348072154424" target="_blank" class="ncta">Shop Now</a>
+    <button class="ham" id="ham"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mm" id="mm">
+  <button class="mclose" id="mc">✕</button>
+  <a href="#collections">Collections</a>
+  <a href="#featured">Featured</a>
+  <a href="#about">About</a>
+  <a href="#order">Order</a>
+</div>
+
+<!-- HERO -->
+<section id="hero" style="padding:0;min-height:100vh;">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-ring"></div>
+  <div class="hero-ring2"></div>
+  <div class="hero-inner">
+    <div class="hero-gem">◆ Enugu, Nigeria ◆</div>
+    <h1 class="hero-title">JIGI</h1>
+    <div class="hero-title-em">Jewels</div>
+    <p class="hero-sub">Handcrafted luxury jewelry · Bracelets · Necklaces · Earrings · Sets</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/2348072154424?text=Hi%2C%20I%20would%20like%20to%20shop%20at%20Jigi%20Jewels" target="_blank" class="btn-gold">Shop the Collection</a>
+      <a href="#collections" class="btn-ol">View Pieces</a>
+    </div>
+  </div>
+</section>
+
+<div class="mwrap"><div class="minner">
+  <span class="mi">Handcrafted Jewelry</span><span class="md">◆</span>
+  <span class="mi">Bracelets</span><span class="md">◆</span>
+  <span class="mi">Necklace Sets</span><span class="md">◆</span>
+  <span class="mi">Earrings</span><span class="md">◆</span>
+  <span class="mi">Luxury Pieces</span><span class="md">◆</span>
+  <span class="mi">Enugu Nigeria</span><span class="md">◆</span>
+  <span class="mi">Jigi Jewels</span><span class="md">◆</span>
+  <span class="mi">Handcrafted Jewelry</span><span class="md">◆</span>
+  <span class="mi">Bracelets</span><span class="md">◆</span>
+  <span class="mi">Necklace Sets</span><span class="md">◆</span>
+  <span class="mi">Earrings</span><span class="md">◆</span>
+  <span class="mi">Luxury Pieces</span><span class="md">◆</span>
+  <span class="mi">Enugu Nigeria</span><span class="md">◆</span>
+  <span class="mi">Jigi Jewels</span><span class="md">◆</span>
+</div></div>
+
+<!-- COLLECTIONS -->
+<section id="collections">
+  <div class="coll-header reveal">
+    <div>
+      <div class="eyebrow">Our Collections</div>
+      <h2 class="stitle">Pieces That<br><em>Define You</em></h2>
+    </div>
+    <a href="https://wa.me/2348072154424?text=Hi%2C%20I%20would%20like%20to%20see%20all%20collections" target="_blank" class="btn-gold" style="font-size:0.62rem;padding:12px 28px;letter-spacing:3px;">View All Pieces</a>
+  </div>
+  <div class="coll-grid">
+    <div class="coll-card tall reveal">
+      <img class="coll-img" src="https://i.ibb.co/nN0FyrF0/IMG-20260322-WA0170.jpg" alt="Bracelets" onclick="openLB(this)">
+      <div class="coll-overlay"></div>
+      <div class="coll-body">
+        <div class="coll-cat">Collection 01</div>
+        <div class="coll-name">Charm Bracelets</div>
+        <a href="https://wa.me/2348072154424?text=Hi%2C%20I%20would%20like%20to%20order%20a%20bracelet%20from%20Jigi%20Jewels" target="_blank" class="coll-wa">Order Now →</a>
+      </div>
+    </div>
+    <div class="coll-card reveal rd1">
+      <img class="coll-img" src="https://i.ibb.co/RGBRF2Nq/IMG-20260322-WA0169.jpg" alt="Necklace Set" onclick="openLB(this)">
+      <div class="coll-overlay"></div>
+      <div class="coll-body">
+        <div class="coll-cat">Collection 02</div>
+        <div class="coll-name">Crystal Necklace Sets</div>
+        <a href="https://wa.me/2348072154424?text=Hi%2C%20I%20would%20like%20to%20order%20a%20necklace%20set%20from%20Jigi%20Jewels" target="_blank" class="coll-wa">Order Now →</a>
+      </div>
+    </div>
+    <div class="coll-card reveal rd2">
+      <img class="coll-img" src="https://i.ibb.co/XxyHHPP5/IMG-20260322-WA0176.jpg" alt="Silver Set" onclick="openLB(this)">
+      <div class="coll-overlay"></div>
+      <div class="coll-body">
+        <div class="coll-cat">Collection 03</div>
+        <div class="coll-name">Silver Heart Sets</div>
+        <a href="https://wa.me/2348072154424?text=Hi%2C%20I%20would%20like%20to%20order%20a%20silver%20set%20from%20Jigi%20Jewels" target="_blank" class="coll-wa">Order Now →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED -->
+<section id="featured">
+  <div class="feat-header reveal">
+    <div class="eyebrow">New Arrivals</div>
+    <h2 class="stitle">Featured <em>Pieces</em></h2>
+  </div>
+  <div class="feat-grid">
+    <div class="feat-item reveal">
+      <img class="feat-img" src="https://i.ibb.co/x8zzRN9Y/IMG-20260322-WA0168.jpg" alt="Piece 1" onclick="openLB(this)">
+      <div class="feat-overlay"></div>
+      <div class="feat-label"><div class="feat-type">Bracelets</div><div class="feat-name">Candy Charm Stack</div></div>
+    </div>
+    <div class="feat-item reveal rd1">
+      <img class="feat-img" src="https://i.ibb.co/27yLpSS3/IMG-20260322-WA0167.jpg" alt="Piece 2" onclick="openLB(this)">
+      <div class="feat-overlay"></div>
+      <div class="feat-label"><div class="feat-type">Bracelets</div><div class="feat-name">Pink Crackle Stack</div></div>
+    </div>
+    <div class="feat-item reveal rd2">
+      <img class="feat-img" src="https://i.ibb.co/Fqn7ffWy/IMG-20260322-WA0173.jpg" alt="Piece 3" onclick="openLB(this)">
+      <div class="feat-overlay"></div>
+      <div class="feat-label"><div class="feat-type">Bracelets</div><div class="feat-name">Yellow Charm Stack</div></div>
+    </div>
+    <div class="feat-item reveal rd3">
+      <img class="feat-img" src="https://i.ibb.co/qLJTNjKf/IMG-20260322-WA0174.jpg" alt="Piece 4" onclick="openLB(this)">
+      <div class="feat-overlay"></div>
+      <div class="feat-label"><div class="feat-type">Sets</div><div class="feat-name">Gold Multi Chain Set</div></div>
+    </div>
+    <div class="feat-item reveal rd4">
+      <img class="feat-img" src="https://i.ibb.co/CfCswQJ/IMG-20260322-WA0171.jpg" alt="Piece 5" onclick="openLB(this)">
+      <div class="feat-overlay"></div>
+      <div class="feat-label"><div class="feat-type">Sets</div><div class="feat-name">Amethyst Crystal Set</div></div>
+    </div>
+  </div>
+  <!-- Row 2 -->
+  <div class="feat-grid" style="margin-top:3px;">
+    <div class="feat-item reveal">
+      <img class="feat-img" src="https://i.ibb.co/XfzrLQnF/IMG-20260322-WA0177.jpg" alt="Piece 6" onclick="openLB(this)">
+      <div class="feat-overlay"></div>
+      <div class="feat-label"><div class="feat-type">Sets</div><div class="feat-name">Pink Bow Set</div></div>
+    </div>
+    <div class="feat-item reveal rd1">
+      <img class="feat-img" src="https://i.ibb.co/Z1XTKHwD/IMG-20260322-WA0178.jpg" alt="Piece 7" onclick="openLB(this)">
+      <div class="feat-overlay"></div>
+      <div class="feat-label"><div class="feat-type">Sets</div><div class="feat-name">Crystal Bow Set</div></div>
+    </div>
+    <div class="feat-item reveal rd2">
+      <img class="feat-img" src="https://i.ibb.co/cXsQbQMx/IMG-20260322-WA0175.jpg" alt="Piece 8" onclick="openLB(this)">
+      <div class="feat-overlay"></div>
+      <div class="feat-label"><div class="feat-type">Necklaces</div><div class="feat-name">Pink Crystal Necklace</div></div>
+    </div>
+    <div class="feat-item reveal rd3" style="grid-column:span 2;">
+      <img class="feat-img" src="https://i.ibb.co/F4TQYcSZ/IMG-20260322-WA0172.jpg" alt="Piece 9" onclick="openLB(this)" style="height:340px;">
+      <div class="feat-overlay"></div>
+      <div class="feat-label"><div class="feat-type">Sets</div><div class="feat-name">Silver Heart Collection</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner">
+    <div class="reveal">
+      <div class="about-mosaic">
+        <img class="am-img tall" src="https://i.ibb.co/nN0FyrF0/IMG-20260322-WA0170.jpg" alt="Jigi Jewels">
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <img class="am-img" src="https://i.ibb.co/RGBRF2Nq/IMG-20260322-WA0169.jpg" alt="Jewelry">
+          <img class="am-img" src="https://i.ibb.co/XxyHHPP5/IMG-20260322-WA0176.jpg" alt="Jewelry">
+        </div>
+      </div>
+    </div>
+    <div class="reveal rd1">
+      <div class="eyebrow">Our Story</div>
+      <h2 class="stitle">Jewelry That<br><em>Tells Your Story</em></h2>
+      <div style="margin-top:24px;">
+        <p>Jigi Jewels is a luxury jewelry brand based in Enugu, Nigeria. Every piece in our collection is carefully selected and handcrafted to bring out the beauty and personality of every woman who wears it.</p>
+        <p>From elegant necklace sets to playful charm bracelets — each piece is a statement. We believe jewelry is not just an accessory. It is an expression of who you are.</p>
+      </div>
+      <div class="about-divider"></div>
+      <div class="about-addr">
+        <div class="aal">Find Us</div>
+        <div class="aav">Okpara Avenue, Enugu 400102<br>Enugu State, Nigeria<br><br>WhatsApp: 08072154424</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testi">
+  <div class="testi-header reveal">
+    <div class="eyebrow">What They Say</div>
+    <h2 class="stitle">Our Happy <em>Customers</em></h2>
+  </div>
+  <div class="testi-grid">
+    <div class="tc reveal">
+      <div class="tc-stars">★★★★★</div>
+      <p class="tc-text">"I ordered the pink crystal necklace set and it was even more beautiful in person. The quality is amazing and delivery was fast. I get compliments every time I wear it."</p>
+      <div class="tc-name">Adaeze O.</div>
+      <div class="tc-det">Enugu · Necklace Set</div>
+    </div>
+    <div class="tc reveal rd1">
+      <div class="tc-stars">★★★★★</div>
+      <p class="tc-text">"The charm bracelet stack I got was perfect. Every piece is so detailed and unique. Jigi Jewels is the only place I buy jewelry from now. Highly recommend."</p>
+      <div class="tc-name">Chisom A.</div>
+      <div class="tc-det">Enugu · Charm Bracelet Stack</div>
+    </div>
+    <div class="tc reveal rd2">
+      <div class="tc-stars">★★★★★</div>
+      <p class="tc-text">"Ordered as a gift for my sister and she absolutely loved it. The packaging was beautiful and the silver heart set looked expensive and luxurious. Will order again."</p>
+      <div class="tc-name">Ngozi M.</div>
+      <div class="tc-det">Enugu · Silver Heart Set</div>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER -->
+<section id="order">
+  <div class="order-inner reveal">
+    <div class="eyebrow" style="justify-content:center;">Order Now</div>
+    <h2 class="stitle" style="margin-bottom:14px;">Find Your<br><em>Perfect Piece</em></h2>
+    <p>Tap below to order directly on WhatsApp. Tell us what you want and we will make it happen.</p>
+    <div class="order-opts">
+      <a href="https://wa.me/2348072154424?text=Hi%2C%20I%20would%20like%20to%20order%20a%20bracelet%20from%20Jigi%20Jewels" target="_blank" class="oo">
+        <div class="oo-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
+        <div class="oo-name">Bracelets</div>
+        <div class="oo-desc">Charm stacks, beaded sets and more</div>
+      </a>
+      <a href="https://wa.me/2348072154424?text=Hi%2C%20I%20would%20like%20to%20order%20a%20necklace%20or%20set%20from%20Jigi%20Jewels" target="_blank" class="oo">
+        <div class="oo-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <div class="oo-name">Necklace Sets</div>
+        <div class="oo-desc">Crystal sets, chain necklaces and earrings</div>
+      </a>
+      <a href="https://wa.me/2348072154424?text=Hi%2C%20I%20would%20like%20to%20enquire%20about%20Jigi%20Jewels%20collections" target="_blank" class="oo">
+        <div class="oo-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+        <div class="oo-name">General Enquiry</div>
+        <div class="oo-desc">Ask us anything about our pieces</div>
+      </a>
+    </div>
+    <a href="https://wa.me/2348072154424?text=Hi%2C%20I%20would%20like%20to%20shop%20at%20Jigi%20Jewels" target="_blank" class="wa-main">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Shop on WhatsApp
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="fi">
+    <div class="ft">
+      <div>
+        <div class="fb-logo">Jigi Jewels</div>
+        <div class="fb-sub">Luxury Jewelry · Enugu</div>
+        <p class="fb-desc">Handcrafted luxury jewelry for the woman who knows her worth. Bracelets, necklaces, earrings and sets. Based in Enugu, Nigeria.</p>
+      </div>
+      <div class="fc"><h4>Collections</h4><ul><li><a href="#collections">Charm Bracelets</a></li><li><a href="#collections">Crystal Necklace Sets</a></li><li><a href="#collections">Silver Heart Sets</a></li><li><a href="#featured">New Arrivals</a></li></ul></div>
+      <div class="fc"><h4>Contact</h4><ul><li><a href="https://wa.me/2348072154424" target="_blank">08072154424</a></li><li><a href="#">Okpara Avenue, Enugu</a></li><li><a href="https://wa.me/2348072154424" target="_blank">Shop on WhatsApp</a></li></ul></div>
+    </div>
+    <div class="fbot"><div class="fcp">2025 Jigi Jewels · Enugu, Nigeria · Luxury Handcrafted Jewelry</div><div class="fcp">◆ Made with love</div></div>
+  </div>
+</footer>
+
+<!-- ADMIN TRIGGER (hover top-center bar) -->
+<div class="adm-trigger" id="admTrigger" title="Admin"></div>
+
+<!-- ADMIN LOGIN -->
+<div class="adm-login" id="admLogin">
+  <div class="adm-login-box">
+    <div class="adm-login-logo">Jigi Jewels</div>
+    <div class="adm-login-sub">Image Manager · Admin Access</div>
+    <input type="password" id="admPwd" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')admDoLogin()">
+    <button class="adm-login-btn" onclick="admDoLogin()">Access Dashboard</button>
+    <div class="adm-login-err" id="admErr"></div>
+    <span class="adm-login-close" onclick="admCloseLogin()">Cancel</span>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div class="adm-panel" id="admPanel">
+  <div class="adm-header">
+    <div class="adm-title">◆ Image Manager</div>
+    <div class="adm-header-right">
+      <button class="adm-reset-all" onclick="admResetAll()">Reset All to Default</button>
+      <button class="adm-save-all" onclick="admSaveAll()">Save All Changes</button>
+      <button class="adm-close" onclick="admClosePanel()">✕</button>
+    </div>
+  </div>
+  <div class="adm-body" id="admBody">
+    <!-- Hero -->
+    <div class="adm-hero-section">
+      <div class="adm-section-title">Hero Background</div>
+      <img class="adm-hero-preview" id="adm-prev-hero" src="" alt="Hero">
+      <div class="adm-hero-row">
+        <input class="adm-url-input" id="adm-inp-hero" placeholder="Paste image URL for hero background...">
+        <button class="adm-apply-btn" style="white-space:nowrap;padding:8px 16px;" onclick="admApply('hero')">Apply</button>
+        <button class="adm-reset-btn" onclick="admReset('hero')">↺</button>
+      </div>
+      <div class="adm-status" id="adm-st-hero">✓ Saved</div>
+    </div>
+
+    <!-- Collections -->
+    <div class="adm-section-title">Collections</div>
+    <div class="adm-grid" id="admCollGrid"></div>
+
+    <!-- Featured -->
+    <div class="adm-section-title">Featured Pieces</div>
+    <div class="adm-grid" id="admFeatGrid"></div>
+
+    <!-- About Mosaic -->
+    <div class="adm-section-title">About Section</div>
+    <div class="adm-grid" id="admAboutGrid"></div>
+  </div>
+</div>
+<div class="adm-toast" id="admToast">Changes Saved</div>
+
+<a href="https://wa.me/2348072154424" target="_blank" class="fwa"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+
+<div class="cpulse"></div>
+<button class="cbtn" id="cbtn" onclick="toggleC()" style="position:fixed;"><span style="position:relative;">JJ<div class="cnotif" id="cnotif">1</div></span></button>
+<div class="cwin" id="cwin">
+  <div class="chead"><div class="chi"><div class="chava">JJ</div><div><div class="chname">Jigi Jewels</div><div class="chst">Online · Replies instantly</div></div></div><button class="chx" onclick="toggleC()">✕</button></div>
+  <div class="cmsgs" id="cmsgs"></div>
+  <div class="copts" id="copts"></div>
+  <div class="cinprow"><input class="cinp" id="cinp" placeholder="Ask us anything..." onkeydown="if(event.key==='Enter')sendC()"><button class="csend" onclick="sendC()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button></div>
+</div>
+<div class="lb" id="lb"><button class="lbx" onclick="closeLB()">✕</button><img id="lbImg" src="" alt=""></div>
+
+<script>
+var cur=document.getElementById('cur'),curr=document.getElementById('curr');
+document.addEventListener('mousemove',function(e){cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';curr.style.left=e.clientX+'px';curr.style.top=e.clientY+'px';});
+var nav=document.getElementById('nav');
+window.addEventListener('scroll',function(){nav.classList.toggle('sc',scrollY>60);});
+var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('visible');});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(function(r){obs.observe(r);});
+document.getElementById('ham').addEventListener('click',function(){document.getElementById('mm').classList.add('open');});
+document.getElementById('mc').addEventListener('click',function(){document.getElementById('mm').classList.remove('open');});
+document.querySelectorAll('.mm a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('mm').classList.remove('open');});});
+function openLB(img){document.getElementById('lbImg').src=img.src;document.getElementById('lb').classList.add('open');document.body.style.overflow='hidden';}
+function closeLB(){document.getElementById('lb').classList.remove('open');document.body.style.overflow='';}
+document.getElementById('lb').addEventListener('click',function(e){if(e.target===this)closeLB();});
+(function(){
+var WA='https://wa.me/2348072154424?text=';
+var open=false;
+var flow={
+  start:{msg:'Welcome to Jigi Jewels! I am your shopping assistant. What are you looking for today?',delay:600,opts:['Shop Bracelets','Shop Necklace Sets','Shop Earrings','View All Pieces','Location']},
+  'Shop Bracelets':{wa:'Hi, I would like to order a bracelet from Jigi Jewels. Can you show me what is available?'},
+  'Shop Necklace Sets':{wa:'Hi, I would like to order a necklace set from Jigi Jewels. Can you show me what is available?'},
+  'Shop Earrings':{wa:'Hi, I would like to order earrings from Jigi Jewels. Can you show me what is available?'},
+  'View All Pieces':{wa:'Hi, I would like to see all available pieces at Jigi Jewels.'},
+  'Location':{msg:'We are located at Okpara Avenue, Enugu 400102, Enugu State, Nigeria. You can also order via WhatsApp and we will deliver to you.',delay:800,opts:['Shop Now','Back']},
+  'Shop Now':{wa:'Hi, I would like to shop at Jigi Jewels. Please show me what is available.'},
+  'Back':{msg:'How can I help you?',delay:400,opts:['Shop Bracelets','Shop Necklace Sets','Shop Earrings','View All Pieces','Location']}
+};
+window.toggleC=function(){open=!open;document.getElementById('cwin').classList.toggle('open',open);if(open){document.getElementById('cnotif').style.display='none';if(document.getElementById('cmsgs').children.length===0)startC();}};
+function startC(){setTimeout(function(){showT();setTimeout(function(){removeT();addBot(flow.start.msg);showOpts(flow.start.opts);},flow.start.delay);},300);}
+function showT(){var t=document.createElement('div');t.className='ctyp';t.id='ct';t.innerHTML='<span></span><span></span><span></span>';document.getElementById('cmsgs').appendChild(t);scrollC();}
+function removeT(){var t=document.getElementById('ct');if(t)t.remove();}
+function addBot(text){var m=document.createElement('div');m.className='cm bot';m.textContent=text;document.getElementById('cmsgs').appendChild(m);scrollC();}
+function addUser(text){var m=document.createElement('div');m.className='cm user';m.textContent=text;document.getElementById('cmsgs').appendChild(m);document.getElementById('copts').innerHTML='';scrollC();}
+function showOpts(opts){var c=document.getElementById('copts');c.innerHTML='';opts.forEach(function(opt){var b=document.createElement('button');b.className='copt';b.textContent=opt;b.onclick=function(){handleOpt(opt);};c.appendChild(b);});}
+function handleOpt(opt){addUser(opt);var step=flow[opt];if(!step)return;if(step.wa){setTimeout(function(){showT();setTimeout(function(){removeT();addBot('Opening WhatsApp now. Our team will show you everything available and help you order.');var c=document.getElementById('copts');c.innerHTML='';var a=document.createElement('a');a.href=WA+encodeURIComponent(step.wa);a.target='_blank';a.className='cwalink';a.textContent='Open WhatsApp';c.appendChild(a);},800);},200);return;}setTimeout(function(){showT();setTimeout(function(){removeT();addBot(step.msg);if(step.opts)showOpts(step.opts);},step.delay);},200);}
+window.sendC=function(){var inp=document.getElementById('cinp');var text=inp.value.trim();if(!text)return;inp.value='';addUser(text);setTimeout(function(){showT();setTimeout(function(){removeT();addBot('Thank you! Tap below to continue on WhatsApp and we will get back to you immediately.');var c=document.getElementById('copts');c.innerHTML='';var a=document.createElement('a');a.href=WA+encodeURIComponent('Hi from the Jigi Jewels website: '+text);a.target='_blank';a.className='cwalink';a.textContent='Continue on WhatsApp';c.appendChild(a);},900);},200);};
+function scrollC(){var m=document.getElementById('cmsgs');m.scrollTop=m.scrollHeight;}
+setTimeout(function(){if(!open)toggleC();},8000);
+})();
+
+// ═══════════════════════════════════════════
+// ADMIN IMAGE MANAGER
+// ═══════════════════════════════════════════
+(function(){
+var ADM_PWD = 'jigijewels2025'; // ← Change this password
+var STORE_KEY = 'jigi_img_overrides';
+
+// All image slots: [id, section label, item name, current src selector]
+var SLOTS = {
+  hero: {
+    label: 'Hero',
+    name: 'Background',
+    selector: '.hero-bg',
+    type: 'bg',
+    default: "url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1600&q=85')"
+  }
+};
+
+// Collect all .coll-img
+document.querySelectorAll('.coll-img').forEach(function(img,i){
+  var body = img.closest('.coll-card').querySelector('.coll-name');
+  var name = body ? body.textContent : 'Collection '+(i+1);
+  SLOTS['coll_'+i] = {label:'Collection',name:name,el:img,type:'img',default:img.src};
+});
+// Collect all .feat-img
+document.querySelectorAll('.feat-img').forEach(function(img,i){
+  var name = img.closest('.feat-item') && img.closest('.feat-item').querySelector('.feat-name');
+  name = name ? name.textContent : 'Featured '+(i+1);
+  SLOTS['feat_'+i] = {label:'Featured',name:name,el:img,type:'img',default:img.src};
+});
+// About mosaic
+document.querySelectorAll('.am-img').forEach(function(img,i){
+  SLOTS['about_'+i] = {label:'About',name:'Mosaic Image '+(i+1),el:img,type:'img',default:img.src};
+});
+
+// Load saved overrides from localStorage
+function loadOverrides(){
+  try{ return JSON.parse(localStorage.getItem(STORE_KEY)||'{}'); }catch(e){return {};}
+}
+function saveOverrides(data){
+  localStorage.setItem(STORE_KEY, JSON.stringify(data));
+}
+
+// Apply all saved overrides on page load
+function applyAllOverrides(){
+  var data = loadOverrides();
+  Object.keys(data).forEach(function(id){
+    var val = data[id];
+    applyToPage(id, val);
+  });
+}
+
+function applyToPage(id, url){
+  var slot = SLOTS[id];
+  if(!slot) return;
+  if(slot.type === 'bg'){
+    var el = document.querySelector(slot.selector);
+    if(el) el.style.backgroundImage = "url('"+url+"')";
+  } else {
+    if(slot.el) slot.el.src = url;
+  }
+}
+
+applyAllOverrides();
+
+// ── Build the panel UI ──
+function buildPanel(){
+  // Hero preview
+  var heroSlot = SLOTS.hero;
+  var heroEl = document.querySelector(heroSlot.selector);
+  var heroUrl = heroEl ? heroEl.style.backgroundImage.replace(/url\(['"]?|['"]?\)/g,'') : '';
+  if(!heroUrl) heroUrl = heroSlot.default.replace(/url\(['"]?|['"]?\)/g,'');
+  document.getElementById('adm-prev-hero').src = heroUrl;
+  document.getElementById('adm-inp-hero').value = heroUrl;
+
+  // Coll grid
+  buildGrid('admCollGrid', Object.keys(SLOTS).filter(function(k){return k.startsWith('coll_');}));
+  buildGrid('admFeatGrid', Object.keys(SLOTS).filter(function(k){return k.startsWith('feat_');}));
+  buildGrid('admAboutGrid', Object.keys(SLOTS).filter(function(k){return k.startsWith('about_');}));
+}
+
+function buildGrid(gridId, ids){
+  var grid = document.getElementById(gridId);
+  grid.innerHTML = '';
+  ids.forEach(function(id){
+    var slot = SLOTS[id];
+    var currentSrc = slot.el ? slot.el.src : slot.default;
+    var card = document.createElement('div');
+    card.className = 'adm-card';
+    card.innerHTML =
+      '<img class="adm-card-preview" id="adm-prev-'+id+'" src="'+currentSrc+'" onclick="admPreviewFull(\''+id+'\')" title="Click to preview">' +
+      '<div class="adm-card-label">'+slot.label+'</div>' +
+      '<div class="adm-card-name">'+slot.name+'</div>' +
+      '<input class="adm-url-input" id="adm-inp-'+id+'" placeholder="Paste image URL..." value="'+currentSrc+'">' +
+      '<div class="adm-card-btns">' +
+        '<button class="adm-apply-btn" onclick="admApply(\''+id+'\')">Apply</button>' +
+        '<button class="adm-reset-btn" onclick="admReset(\''+id+'\')" title="Reset to default">↺</button>' +
+      '</div>' +
+      '<div class="adm-status" id="adm-st-'+id+'">✓ Saved</div>';
+    grid.appendChild(card);
+  });
+}
+
+// ── Admin actions ──
+window.admApply = function(id){
+  var inp = document.getElementById('adm-inp-'+id);
+  var url = inp.value.trim();
+  if(!url) return;
+  applyToPage(id, url);
+  // Update preview
+  var prev = document.getElementById('adm-prev-'+id);
+  if(prev) prev.src = url;
+  // Mark in overrides
+  var data = loadOverrides();
+  data[id] = url;
+  saveOverrides(data);
+  // Status flash
+  var st = document.getElementById('adm-st-'+id);
+  if(st){st.classList.add('show');setTimeout(function(){st.classList.remove('show');},2000);}
+};
+
+window.admReset = function(id){
+  var slot = SLOTS[id];
+  if(!slot) return;
+  var def = slot.default;
+  if(slot.type==='bg') def = def.replace(/url\(['"]?|['"]?\)/g,'');
+  var inp = document.getElementById('adm-inp-'+id);
+  if(inp) inp.value = def;
+  applyToPage(id, def);
+  var prev = document.getElementById('adm-prev-'+id);
+  if(prev) prev.src = def;
+  var data = loadOverrides();
+  delete data[id];
+  saveOverrides(data);
+  var st = document.getElementById('adm-st-'+id);
+  if(st){st.textContent='↺ Reset';st.style.color='#C9973A';st.classList.add('show');setTimeout(function(){st.classList.remove('show');st.textContent='✓ Saved';st.style.color='#25D366';},2000);}
+};
+
+window.admSaveAll = function(){
+  var data = loadOverrides();
+  Object.keys(SLOTS).forEach(function(id){
+    var inp = document.getElementById('adm-inp-'+id);
+    if(inp && inp.value.trim()){
+      var url = inp.value.trim();
+      data[id] = url;
+      applyToPage(id, url);
+    }
+  });
+  saveOverrides(data);
+  var t = document.getElementById('admToast');
+  t.classList.add('show');setTimeout(function(){t.classList.remove('show');},2200);
+};
+
+window.admResetAll = function(){
+  if(!confirm('Reset ALL images to their defaults?')) return;
+  localStorage.removeItem(STORE_KEY);
+  Object.keys(SLOTS).forEach(function(id){
+    var slot = SLOTS[id];
+    var def = slot.default;
+    if(slot.type==='bg') def = def.replace(/url\(['"]?|['"]?\)/g,'');
+    applyToPage(id, def);
+    var inp = document.getElementById('adm-inp-'+id);
+    if(inp) inp.value = def;
+    var prev = document.getElementById('adm-prev-'+id);
+    if(prev) prev.src = def;
+  });
+  var t = document.getElementById('admToast');
+  t.textContent='All Reset to Default';
+  t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show');t.textContent='Changes Saved';},2200);
+};
+
+window.admPreviewFull = function(id){
+  var inp = document.getElementById('adm-inp-'+id);
+  if(inp && inp.value.trim()){
+    document.getElementById('lbImg').src = inp.value.trim();
+    document.getElementById('lb').classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+};
+
+// ── Login ──
+window.admDoLogin = function(){
+  var pwd = document.getElementById('admPwd').value;
+  var err = document.getElementById('admErr');
+  if(pwd === ADM_PWD){
+    err.textContent='';
+    document.getElementById('admLogin').classList.remove('open');
+    document.getElementById('admPwd').value='';
+    buildPanel();
+    document.getElementById('admPanel').classList.add('open');
+  } else {
+    err.textContent='Incorrect password. Try again.';
+    document.getElementById('admPwd').value='';
+    document.getElementById('admPwd').focus();
+  }
+};
+window.admCloseLogin = function(){
+  document.getElementById('admLogin').classList.remove('open');
+  document.getElementById('admPwd').value='';
+  document.getElementById('admErr').textContent='';
+};
+window.admClosePanel = function(){
+  document.getElementById('admPanel').classList.remove('open');
+};
+
+// Trigger: hover top-center bar or triple-click logo
+var trigger = document.getElementById('admTrigger');
+trigger.addEventListener('click', function(){
+  document.getElementById('admLogin').classList.add('open');
+  setTimeout(function(){document.getElementById('admPwd').focus();},100);
+});
+
+// Secret: triple-click the logo
+var logoClicks=0,logoTimer;
+document.querySelector('.logo').addEventListener('click',function(){
+  logoClicks++;
+  clearTimeout(logoTimer);
+  logoTimer=setTimeout(function(){logoClicks=0;},600);
+  if(logoClicks>=3){
+    logoClicks=0;
+    document.getElementById('admLogin').classList.add('open');
+    setTimeout(function(){document.getElementById('admPwd').focus();},100);
+  }
+});
+
+})();
+</script>
+</body>
+</html>
